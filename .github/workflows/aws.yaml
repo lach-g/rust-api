@@ -35,7 +35,7 @@ jobs:
         env:
           ECR_REGISTRY: "992382822321.dkr.ecr.us-east-2.amazonaws.com/rust-api-repo"
           ECR_REPOSITORY: "rust-api-repo"
-          IMAGE_TAG: latest
+          IMAGE_TAG: "latest"
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
