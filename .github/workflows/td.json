@@ -3,7 +3,7 @@
     "containerDefinitions": [
         {
             "name": "app",
-            "image": "992382822321.dkr.ecr.us-east-2.amazonaws.com/rust-api-repo",
+            "image": "992382822321.dkr.ecr.us-east-2.amazonaws.com",
             "cpu": 256,
             "memory": 512,
             "portMappings": [
