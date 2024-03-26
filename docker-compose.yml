@@ -1,0 +1,42 @@
+services:
+  db:
+    image: postgres
+    hostname: db
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    volumes:
+      - data:/var/lib/postgresql/data
+      - ./sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+    healthcheck:
+      test: /usr/bin/pg_isready
+      interval: 5s
+      timeout: 10s
+      retries: 120
+    ports:
+      - 5432:5432
+    networks:
+      - apilan
+        
+  api:
+    build: .
+    environment:
+      API_PORT: 3000
+      RUST_LOG: info
+      DATABASE_URL: postgres://user:password@db:5432/user
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - 3000:3000
+    networks:
+      - apilan
+
+volumes:
+  data:
+    name: data
+
+networks:
+  apilan:
+    driver: bridge
