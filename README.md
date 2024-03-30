@@ -41,3 +41,9 @@ docker rm my-postgres-container
 docker volume rm my_postgres_data
 
 For some reason docker-compose not working.
+
+## TODOs
+- Tests
+- Abstractions (db controller layer)
+- Middleware (auth cookie, rate limit)
+- Restructure database for different tables
